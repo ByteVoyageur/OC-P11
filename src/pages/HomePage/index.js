@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import './style.css'
 
 const HomePage = () => {
@@ -14,10 +15,10 @@ const HomePage = () => {
           <h1 className='sr-only'>Argent Bank</h1>
         </a>
         <div>
-          <a className='main-nav-item' href='./sign-in.html'>
+          <Link className='main-nav-item' to='/sign-in'>
             <i className='fa fa-user-circle'></i>
             Sign In
-          </a>
+          </Link>
         </div>
       </nav>
       <main>
