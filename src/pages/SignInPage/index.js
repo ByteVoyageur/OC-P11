@@ -1,7 +1,47 @@
-import React from 'react'
+// SignInPage component
+import React, { useState, useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
+import { logIn as logInAction } from '../../redux/userActions'
+import FormSignIn from '../../components/FormSignIn'
+import useAPILogIn from '../../hooks/useAPILogIn'
 import './style.css'
 
 const SignInPage = () => {
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+
+  const dispatch = useDispatch()
+  const { isLoggedIn } = useSelector((state) => state.user) // access the user state
+  const navigate = useNavigate()
+  const { logIn: apiLogIn } = useAPILogIn()
+
+  useEffect(() => {
+    if (isLoggedIn) {
+      navigate('/user')
+    }
+  }, [isLoggedIn, navigate])
+
+  const handleSignIn = async (event) => {
+    event.preventDefault()
+    try {
+      console.log('handleSignIn called')
+      const { status, message, body } = await apiLogIn(email, password)
+      if (status === 200) {
+        // Login successful
+        const { token } = body
+        localStorage.setItem('token', token)
+        // Assuming the user data is available in the token, dispatch the logIn action
+        dispatch(logInAction(token))
+      } else {
+        // Login failed
+        console.log('Login failed')
+      }
+    } catch (error) {
+      console.error('Error:', error)
+    }
+  }
+
   return (
     <>
       <nav className='main-nav'>
@@ -24,23 +64,13 @@ const SignInPage = () => {
         <section className='sign-in-content'>
           <i className='fa fa-user-circle sign-in-icon'></i>
           <h1>Sign In</h1>
-          <form>
-            <div className='input-wrapper'>
-              <label htmlFor='username'>Username</label>
-              <input type='text' id='username' />
-            </div>
-            <div className='input-wrapper'>
-              <label htmlFor='password'>Password</label>
-              <input type='password' id='password' />
-            </div>
-            <div className='input-remember'>
-              <input type='checkbox' id='remember-me' />
-              <label htmlFor='remember-me'>Remember me</label>
-            </div>
-            <a href='/user' className='sign-in-button'>
-              Sign In
-            </a>
-          </form>
+          <FormSignIn
+            email={email}
+            setEmail={setEmail}
+            password={password}
+            setPassword={setPassword}
+            handleSignIn={handleSignIn}
+          />
         </section>
       </main>
       <footer className='footer'>
