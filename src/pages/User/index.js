@@ -1,14 +1,20 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
 
 const User = () => {
+  const dispatch = useDispatch()
+
+  const handleSignOut = () => {
+    dispatch({ type: 'LOG_OUT' })
+  }
   return (
     <>
       <nav className='main-nav'>
         <Link className='main-nav-logo' to='/'>
           <img
             className='main-nav-logo-image'
-            src='./img/argentBankLogo.png'
+            src='/argentBankLogo.png'
             alt='Argent Bank Logo'
           />
           <h1 className='sr-only'>Argent Bank</h1>
@@ -18,7 +24,7 @@ const User = () => {
             <i className='fa fa-user-circle'></i>
             Tony
           </Link>
-          <Link className='main-nav-item' to='/'>
+          <Link className='main-nav-item' to='/' onClick={handleSignOut}>
             <i className='fa fa-sign-out'></i>
             Sign Out
           </Link>
