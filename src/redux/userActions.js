@@ -2,6 +2,7 @@
 
 export const LOG_IN = 'LOG_IN'
 export const LOG_OUT = 'LOG_OUT'
+export const SET_FIRST_NAME = 'SET_FIRST_NAME'
 
 export const logIn = (token, firstName) => ({
   type: LOG_IN,
@@ -13,4 +14,9 @@ export const logIn = (token, firstName) => ({
 
 export const logOut = () => ({
   type: LOG_OUT,
+})
+
+export const setFirstName = (firstName) => ({
+  type: SET_FIRST_NAME,
+  payload: firstName,
 })

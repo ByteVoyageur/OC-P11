@@ -30,7 +30,7 @@ const SignInPage = () => {
         // Login successful
         const { token } = data.body
         localStorage.setItem('token', token)
-        dispatch(logInAction(token))
+        dispatch(logInAction({ token, firstName: data.body.firstName }))
         navigate('/user')
       } else {
         // Login failed

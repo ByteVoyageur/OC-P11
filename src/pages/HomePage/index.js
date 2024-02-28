@@ -1,22 +1,19 @@
-// HomePage component
-import React, { useEffect, useState } from 'react'
-import { useDispatch } from 'react-redux'
+import React, { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import getToken from '../../hooks/getToken'
 import Navbar from '../../components/Navbar'
 import Main from '../../components/Main'
 import Footer from '../../components/Footer'
 import './style.css'
-import { useSelector } from 'react-redux'
+import { setFirstName, logOut } from '../../redux/userActions'
 
 const HomePage = () => {
   const { isLoggedIn, firstName } = useSelector((state) => state.user)
   const dispatch = useDispatch()
-
   const token = getToken()
-  const [userFirstName, setUserFirstName] = useState('')
 
   useEffect(() => {
-    if (token) {
+    if (isLoggedIn) {
       fetch('http://localhost:3001/api/v1/user/profile', {
         method: 'GET',
         headers: {
@@ -24,16 +21,28 @@ const HomePage = () => {
           'Content-Type': 'application/json',
         },
       })
-        .then((reponse) => reponse.json())
+        .then((response) => {
+          console.log(response.status) // Check the status of the response
+          return response.json()
+        })
         .then((data) => {
-          // if firstName is not null, set the userFirstName state to the value of firstName
-          setUserFirstName(data.firstName)
+          console.log(data) // Check the data returned from the server
+          if (data.body) {
+            console.log('First Name:', data.body.firstName)
+            dispatch(setFirstName(data.body.firstName))
+          }
+        })
+        .catch((error) => {
+          console.error(
+            'There has been a problem with your fetch operation:',
+            error
+          )
         })
     }
-  }, [token])
+  }, [isLoggedIn, token, dispatch]) // only run the effect if these values change
+
   const handleSignOut = () => {
-    dispatch({ type: 'LOG_OUT' })
-    setUserFirstName('') // when user logs out, set the userFirstName state to an empty string
+    dispatch(logOut()) // use action creator to log out
   }
 
   return (

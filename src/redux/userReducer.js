@@ -1,5 +1,5 @@
 // userReducer.js
-import { LOG_IN, LOG_OUT } from './userActions'
+import { LOG_IN, LOG_OUT, SET_FIRST_NAME } from './userActions'
 
 const initialState = {
   isLoggedIn: false,
@@ -13,7 +13,7 @@ export const userReducer = (state = initialState, action) => {
       return {
         ...state,
         isLoggedIn: true,
-        token: action.payload,
+        token: action.payload.token,
         firstName: action.payload.firstName,
       }
     case LOG_OUT:
@@ -22,6 +22,11 @@ export const userReducer = (state = initialState, action) => {
         isLoggedIn: false,
         token: null,
         firstName: '',
+      }
+    case SET_FIRST_NAME:
+      return {
+        ...state,
+        firstName: action.payload,
       }
     default:
       return state
