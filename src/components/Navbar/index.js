@@ -2,7 +2,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-function Navbar({ isLoggedIn, onSignOut }) {
+function Navbar({ isLoggedIn, onSignOut, firstName }) {
   return (
     <nav className='main-nav'>
       <Link className='main-nav-logo' to='/'>
@@ -15,10 +15,13 @@ function Navbar({ isLoggedIn, onSignOut }) {
       </Link>
       <div>
         {isLoggedIn ? (
-          <a className='main-nav-item' onClick={onSignOut}>
-            <i className='fa fa-user-circle'></i>
-            Sign Out
-          </a>
+          <>
+            <span>Welcome, {firstName}</span>
+            <a className='main-nav-item' onClick={onSignOut}>
+              <i className='fa fa-user-circle'></i>
+              Sign Out
+            </a>
+          </>
         ) : (
           <Link className='main-nav-item' to='/sign-in'>
             <i className='fa fa-user-circle'></i>

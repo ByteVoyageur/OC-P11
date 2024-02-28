@@ -1,7 +1,9 @@
 // HomePage component
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
+import getToken from '../../hooks/getToken'
 import Navbar from '../../components/Navbar'
+import Main from '../../components/Main'
 import Footer from '../../components/Footer'
 import './style.css'
 import { useSelector } from 'react-redux'
@@ -9,8 +11,29 @@ import { useSelector } from 'react-redux'
 const HomePage = () => {
   const { isLoggedIn, firstName } = useSelector((state) => state.user)
   const dispatch = useDispatch()
+
+  const token = getToken()
+  const [userFirstName, setUserFirstName] = useState('')
+
+  useEffect(() => {
+    if (token) {
+      fetch('http://localhost:3001/api/v1/user/profile', {
+        method: 'GET',
+        headers: {
+          Authorization: `Bearer ${token}`,
+          'Content-Type': 'application/json',
+        },
+      })
+        .then((reponse) => reponse.json())
+        .then((data) => {
+          // if firstName is not null, set the userFirstName state to the value of firstName
+          setUserFirstName(data.firstName)
+        })
+    }
+  }, [token])
   const handleSignOut = () => {
     dispatch({ type: 'LOG_OUT' })
+    setUserFirstName('') // when user logs out, set the userFirstName state to an empty string
   }
 
   return (
@@ -20,59 +43,7 @@ const HomePage = () => {
         firstName={firstName}
         onSignOut={handleSignOut}
       />
-      <main>
-        <div className='hero'>
-          <section className='hero-content'>
-            <h2 className='sr-only'>Promoted Content</h2>
-            <p className='subtitle'>No fees.</p>
-            <p className='subtitle'>No minimum deposit.</p>
-            <p className='subtitle'>High interest rates.</p>
-            <p className='text'>
-              Open a savings account with Argent Bank today!
-            </p>
-          </section>
-        </div>
-        <section className='features'>
-          <h2 className='sr-only'>Features</h2>
-          <div className='feature-item'>
-            <img
-              src='/icon-chat.png'
-              alt='Chat Icon'
-              className='feature-icon'
-            />
-            <h3 className='feature-item-title'>You are our #1 priority</h3>
-            <p>
-              Need to talk to a representative? You can get in touch through our
-              24/7 chat or through a phone call in less than 5 minutes.
-            </p>
-          </div>
-          <div className='feature-item'>
-            <img
-              src='/icon-money.png'
-              alt='Chat Icon'
-              className='feature-icon'
-            />
-            <h3 className='feature-item-title'>
-              More savings means higher rates
-            </h3>
-            <p>
-              The more you save with us, the higher your interest rate will be!
-            </p>
-          </div>
-          <div className='feature-item'>
-            <img
-              src='/icon-security.png'
-              alt='Chat Icon'
-              className='feature-icon'
-            />
-            <h3 className='feature-item-title'>Security you can trust</h3>
-            <p>
-              We use top of the line encryption to make sure your data and money
-              is always safe.
-            </p>
-          </div>
-        </section>
-      </main>
+      <Main />
       <Footer />
     </>
   )

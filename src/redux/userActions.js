@@ -3,9 +3,12 @@
 export const LOG_IN = 'LOG_IN'
 export const LOG_OUT = 'LOG_OUT'
 
-export const logIn = (token) => ({
+export const logIn = (token, firstName) => ({
   type: LOG_IN,
-  payload: token,
+  payload: {
+    token,
+    firstName,
+  },
 })
 
 export const logOut = () => ({
