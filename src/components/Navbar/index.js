@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 function Navbar({ isLoggedIn, onSignOut, firstName }) {
   const name = typeof firstName === 'string' ? firstName : ''
 
-  console.log('after this is it string ？', firstName)
+  console.log('is it string after this？', firstName)
   return (
     <nav className='main-nav'>
       <Link className='main-nav-logo' to='/'>
@@ -19,7 +19,7 @@ function Navbar({ isLoggedIn, onSignOut, firstName }) {
       <div>
         {isLoggedIn ? (
           <>
-            <span>Welcome, {name}</span>
+            <Link to='/edit-profile'>Welcome, {name}</Link>
             <a className='main-nav-item' onClick={onSignOut}>
               <i className='fa fa-user-circle'></i>
               Sign Out
