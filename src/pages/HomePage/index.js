@@ -7,7 +7,7 @@ import './style.css'
 import { useSelector } from 'react-redux'
 
 const HomePage = () => {
-  const isLoggedIn = useSelector((state) => state.user.isLoggedIn)
+  const { isLoggedIn, firstName } = useSelector((state) => state.user)
   const dispatch = useDispatch()
   const handleSignOut = () => {
     dispatch({ type: 'LOG_OUT' })
@@ -15,7 +15,11 @@ const HomePage = () => {
 
   return (
     <>
-      <Navbar isLoggedIn={isLoggedIn} onSignOut={handleSignOut} />
+      <Navbar
+        isLoggedIn={isLoggedIn}
+        firstName={firstName}
+        onSignOut={handleSignOut}
+      />
       <main>
         <div className='hero'>
           <section className='hero-content'>

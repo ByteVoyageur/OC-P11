@@ -1,12 +1,11 @@
 // userActions.js
 
-// define action types
 export const LOG_IN = 'LOG_IN'
 export const LOG_OUT = 'LOG_OUT'
 
-// define action creators
-export const logIn = () => ({
+export const logIn = (token) => ({
   type: LOG_IN,
+  payload: token,
 })
 
 export const logOut = () => ({

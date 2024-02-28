@@ -25,17 +25,16 @@ const SignInPage = () => {
   const handleSignIn = async (event) => {
     event.preventDefault()
     try {
-      console.log('handleSignIn called')
-      const { status, message, body } = await apiLogIn(email, password)
-      if (status === 200) {
+      const data = await apiLogIn(email, password)
+      if (data.status === 200) {
         // Login successful
-        const { token } = body
+        const { token } = data.body
         localStorage.setItem('token', token)
-        // Assuming the user data is available in the token, dispatch the logIn action
         dispatch(logInAction(token))
+        navigate('/user')
       } else {
         // Login failed
-        console.log('Login failed')
+        console.log('Login failed:', data.message)
       }
     } catch (error) {
       console.error('Error:', error)
