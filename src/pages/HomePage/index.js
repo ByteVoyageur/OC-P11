@@ -1,14 +1,21 @@
 // HomePage component
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
 import Navbar from '../../components/Navbar'
 import Footer from '../../components/Footer'
 import './style.css'
+import { useSelector } from 'react-redux'
 
 const HomePage = () => {
+  const isLoggedIn = useSelector((state) => state.user.isLoggedIn)
+  const dispatch = useDispatch()
+  const handleSignOut = () => {
+    dispatch({ type: 'LOG_OUT' })
+  }
+
   return (
     <>
-      <Navbar />
+      <Navbar isLoggedIn={isLoggedIn} onSignOut={handleSignOut} />
       <main>
         <div className='hero'>
           <section className='hero-content'>
