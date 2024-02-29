@@ -19,7 +19,7 @@ function Navbar({ isLoggedIn, onSignOut, firstName }) {
       <div>
         {isLoggedIn ? (
           <>
-            <Link to='/edit-profile'>Welcome, {name}</Link>
+            <Link to='/user'>Welcome, {name}</Link>
             <a className='main-nav-item' onClick={onSignOut}>
               <i className='fa fa-user-circle'></i>
               Sign Out

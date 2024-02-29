@@ -3,7 +3,9 @@ import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { logIn as logInAction } from '../../redux/userActions'
+import Navbar from '../../components/Navbar'
 import FormSignIn from '../../components/FormSignIn'
+import Footer from '../../components/Footer'
 import useAPILogIn from '../../hooks/useAPILogIn'
 import './style.css'
 
@@ -43,22 +45,7 @@ const SignInPage = () => {
 
   return (
     <>
-      <nav className='main-nav'>
-        <a className='main-nav-logo' href='/'>
-          <img
-            className='main-nav-logo-image'
-            src='/argentBankLogo.png'
-            alt='Argent Bank Logo'
-          />
-          <h1 className='sr-only'>Argent Bank</h1>
-        </a>
-        <div>
-          <a className='main-nav-item' href='/sign-in'>
-            <i className='fa fa-user-circle'></i>
-            Sign In
-          </a>
-        </div>
-      </nav>
+      <Navbar />
       <main className='main bg-dark'>
         <section className='sign-in-content'>
           <i className='fa fa-user-circle sign-in-icon'></i>
@@ -72,9 +59,7 @@ const SignInPage = () => {
           />
         </section>
       </main>
-      <footer className='footer'>
-        <p className='footer-text'>Copyright 2020 Argent Bank</p>
-      </footer>
+      <Footer />
     </>
   )
 }
