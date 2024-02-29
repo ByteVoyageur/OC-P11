@@ -7,16 +7,18 @@ import TransactionAccount from '../../components/TransactionAccount'
 import Footer from '../../components/Footer'
 import { logOut } from '../../redux/userActions'
 import useFetchUserProfile from '../../hooks/useFetchUserProfile'
+import { useNavigate } from 'react-router-dom'
 
 const User = () => {
   const dispatch = useDispatch()
-  const { isLoggedIn, firstName } = useSelector((state) => state.user)
+  const { isLoggedIn, firstName, lastName } = useSelector((state) => state.user)
   const [showForm, setShowForm] = useState(false)
 
   useFetchUserProfile()
 
+  const Navigate = useNavigate()
   const handleSignOut = () => {
-    dispatch(logOut())
+    dispatch(logOut(() => Navigate('/')))
   }
 
   const handleEditButtonClick = () => {
@@ -35,7 +37,7 @@ const User = () => {
           <h1>
             Welcome back
             <br />
-            Tony Jarvis!
+            {firstName} {lastName}!
           </h1>
           <button className='edit-button' onClick={handleEditButtonClick}>
             Edit Name

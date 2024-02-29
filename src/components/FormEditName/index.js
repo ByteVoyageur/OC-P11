@@ -1,3 +1,4 @@
+// FormEditName component
 import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { setUserName } from '../../redux/userActions' // import the action creator

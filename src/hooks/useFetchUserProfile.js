@@ -1,7 +1,7 @@
 // useFetchUserProfile.js
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { setFirstName, setUserName } from '../redux/userActions'
+import { setFirstName, setUserName, setLastName } from '../redux/userActions'
 import getToken from './getToken'
 
 const useFetchUserProfile = () => {
@@ -21,7 +21,9 @@ const useFetchUserProfile = () => {
         .then((response) => response.json())
         .then((data) => {
           if (data.body) {
+            console.log('如果fetch成功，这里将显示用户信息：', data.body)
             dispatch(setFirstName(data.body.firstName))
+            dispatch(setLastName(data.body.lastName))
             dispatch(setUserName(data.body.userName))
           }
         })

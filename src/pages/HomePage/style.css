@@ -49,18 +49,26 @@ body {
   padding: 5px 20px;
 }
 
-.main-nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
 .main-nav a.router-link-exact-active {
   color: #42b983;
 }
 
-.main-nav-item {
+.nav-user-link {
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 16px;
+  color: #2c3e50;
+}
+
+.button-no-style {
   text-decoration: none;
   margin-right: 0.5rem;
+  font-weight: bold;
+  font-size: 16px;
+  border: none;
+  color: #2c3e50;
+  cursor: pointer;
+  background-color: transparent;
 }
 
 .main-nav-item:hover {
@@ -75,6 +83,12 @@ body {
 .main-nav-logo-image {
   max-width: 100%;
   width: 200px;
+}
+
+.nav-to {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
 }
 
 .hero {

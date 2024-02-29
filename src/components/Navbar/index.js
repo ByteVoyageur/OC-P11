@@ -5,7 +5,8 @@ import { Link } from 'react-router-dom'
 function Navbar({ isLoggedIn, onSignOut, firstName }) {
   const name = typeof firstName === 'string' ? firstName : ''
 
-  console.log('is it string after this？', firstName)
+  console.log('onSignOut function:', onSignOut)
+
   return (
     <nav className='main-nav'>
       <Link className='main-nav-logo' to='/'>
@@ -18,13 +19,18 @@ function Navbar({ isLoggedIn, onSignOut, firstName }) {
       </Link>
       <div>
         {isLoggedIn ? (
-          <>
-            <Link to='/user'>Welcome, {name}</Link>
-            <a className='main-nav-item' onClick={onSignOut}>
+          <div className='nav-to'>
+            <Link className='nav-user-link' to='/user'>
+              {name}
+            </Link>
+            <button
+              className='main-nav-item button-no-style'
+              onClick={onSignOut}
+            >
               <i className='fa fa-user-circle'></i>
               Sign Out
-            </a>
-          </>
+            </button>
+          </div>
         ) : (
           <Link className='main-nav-item' to='/sign-in'>
             <i className='fa fa-user-circle'></i>
