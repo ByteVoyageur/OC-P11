@@ -209,6 +209,11 @@ body {
   font-size: 1.2rem;
 }
 
+.form-edit-name-title h2,
+.form-edit-name-title h3 {
+  color: #000;
+}
+
 .footer {
   display: flex;
   justify-content: center;

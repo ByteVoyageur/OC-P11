@@ -7,7 +7,6 @@ import Navbar from '../../components/Navbar'
 import FormSignIn from '../../components/FormSignIn'
 import Footer from '../../components/Footer'
 import useAPILogIn from '../../hooks/useAPILogIn'
-import './style.css'
 
 const SignInPage = () => {
   const [email, setEmail] = useState('')

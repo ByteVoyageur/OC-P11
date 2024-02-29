@@ -1,23 +1,26 @@
 // User page
-import React from 'react'
+import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import Navbar from '../../components/Navbar'
 import FormEditName from '../../components/FormEditName'
 import TransactionAccount from '../../components/TransactionAccount'
 import Footer from '../../components/Footer'
 import { logOut } from '../../redux/userActions'
-import { useNavigate } from 'react-router-dom'
-import { Link } from 'react-router-dom'
 import useFetchUserProfile from '../../hooks/useFetchUserProfile'
 
 const User = () => {
   const dispatch = useDispatch()
   const { isLoggedIn, firstName } = useSelector((state) => state.user)
+  const [showForm, setShowForm] = useState(false)
 
   useFetchUserProfile()
 
   const handleSignOut = () => {
     dispatch(logOut())
+  }
+
+  const handleEditButtonClick = () => {
+    setShowForm(true)
   }
 
   return (
@@ -34,10 +37,10 @@ const User = () => {
             <br />
             Tony Jarvis!
           </h1>
-          <Link to='/edit-profile' className='edit-button'>
+          <button className='edit-button' onClick={handleEditButtonClick}>
             Edit Name
-          </Link>
-          <FormEditName />
+          </button>
+          {showForm && <FormEditName />}
         </div>
         <TransactionAccount />
       </main>
