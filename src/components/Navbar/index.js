@@ -1,6 +1,8 @@
-// Navbar component
 import React from 'react'
 import { Link } from 'react-router-dom'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faUserCircle } from '@fortawesome/free-solid-svg-icons'
+import { faSignOutAlt } from '@fortawesome/free-solid-svg-icons'
 
 function Navbar({ isLoggedIn, onSignOut, firstName }) {
   const name = typeof firstName === 'string' ? firstName : ''
@@ -20,20 +22,23 @@ function Navbar({ isLoggedIn, onSignOut, firstName }) {
       <div>
         {isLoggedIn ? (
           <div className='nav-to'>
-            <Link className='nav-user-link' to='/user'>
-              {name}
-            </Link>
+            <div className='nav-to-user'>
+              <FontAwesomeIcon icon={faUserCircle} />
+              <Link className='nav-user-link' to='/user'>
+                {name}
+              </Link>
+            </div>
             <button
               className='main-nav-item button-no-style'
               onClick={onSignOut}
             >
-              <i className='fa fa-user-circle'></i>
+              <FontAwesomeIcon icon={faSignOutAlt} />
               Sign Out
             </button>
           </div>
         ) : (
           <Link className='main-nav-item' to='/sign-in'>
-            <i className='fa fa-user-circle'></i>
+            <FontAwesomeIcon icon={faUserCircle} />
             Sign In
           </Link>
         )}

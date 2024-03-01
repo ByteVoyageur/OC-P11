@@ -61,6 +61,8 @@ body {
 }
 
 .button-no-style {
+  display: flex;
+  flex-direction: row;
   text-decoration: none;
   margin-right: 0.5rem;
   font-weight: bold;
@@ -69,10 +71,7 @@ body {
   color: #2c3e50;
   cursor: pointer;
   background-color: transparent;
-}
-
-.main-nav-item:hover {
-  text-decoration: underline;
+  gap: 5px;
 }
 
 .main-nav-logo {
@@ -89,6 +88,12 @@ body {
   display: flex;
   flex-direction: row;
   gap: 20px;
+}
+
+.nav-to-user {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
 }
 
 .hero {
@@ -196,7 +201,7 @@ body {
 }
 
 .sign-in-icon {
-  font-size: 5rem;
+  font-size: 2rem;
 }
 
 .input-remember {

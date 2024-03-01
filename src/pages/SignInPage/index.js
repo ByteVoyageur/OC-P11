@@ -7,6 +7,8 @@ import Navbar from '../../components/Navbar'
 import FormSignIn from '../../components/FormSignIn'
 import Footer from '../../components/Footer'
 import useAPILogIn from '../../hooks/useAPILogIn'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faUserCircle } from '@fortawesome/free-solid-svg-icons'
 
 const SignInPage = () => {
   const [email, setEmail] = useState('')
@@ -47,7 +49,7 @@ const SignInPage = () => {
       <Navbar />
       <main className='main bg-dark'>
         <section className='sign-in-content'>
-          <i className='fa fa-user-circle sign-in-icon'></i>
+          <FontAwesomeIcon className='sign-in-icon' icon={faUserCircle} />
           <h1>Sign In</h1>
           <FormSignIn
             email={email}
