@@ -84,6 +84,13 @@ body {
   width: 200px;
 }
 
+.main-nav-item {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  text-decoration: none;
+}
+
 .nav-to {
   display: flex;
   flex-direction: row;
