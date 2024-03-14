@@ -56,7 +56,7 @@ function FormEditName() {
           />
           {isEmpty && <p style={{ color: 'red' }}>Input cannot be empty.</p>}
           {isSuccess && (
-            <p style={{ color: 'red' }}>Username updated successfully.</p>
+            <p style={{ color: 'green' }}>Username updated successfully.</p>
           )}
         </div>
         <button type='submit' className='sign-in-button'>

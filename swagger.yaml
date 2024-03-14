@@ -137,6 +137,51 @@ paths:
             $ref: '#/definitions/Transaction'
         '404':
           description: Transaction not found
+    post:
+      tags:
+        - Transaction Module
+      summary: Create a new transaction
+      parameters:
+        - in: body
+          name: body
+          description: Transaction data
+          required: true
+          schema:
+            $ref: '#/definitions/Transaction'
+      responses:
+        '201':
+          description: Transaction created successfully
+          schema:
+            $ref: '#/definitions/Transaction'
+        '400':
+          description: Invalid input
+        '500':
+          description: Internal server error
+    put:
+      tags:
+        - Transaction Module
+      summary: Update a transaction
+      parameters:
+        - name: transactionId
+          in: path
+          required: true
+          description: ID of the transaction
+          type: string
+        - in: body
+          name: body
+          description: Update transaction attributes
+          required: true
+          schema:
+            $ref: '#/definitions/Transaction'
+      responses:
+        '200':
+          description: Transaction updated successfully
+          schema:
+            $ref: '#/definitions/ApiResponse'
+        '400':
+          description: Invalid Fields
+        '500':
+          description: Internal Server Error
 definitions:
   Transaction:
     type: object
