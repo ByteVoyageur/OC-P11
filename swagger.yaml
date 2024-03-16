@@ -137,26 +137,6 @@ paths:
             $ref: '#/definitions/Transaction'
         '404':
           description: Transaction not found
-    post:
-      tags:
-        - Transaction Module
-      summary: Create a new transaction
-      parameters:
-        - in: body
-          name: body
-          description: Transaction data
-          required: true
-          schema:
-            $ref: '#/definitions/Transaction'
-      responses:
-        '201':
-          description: Transaction created successfully
-          schema:
-            $ref: '#/definitions/Transaction'
-        '400':
-          description: Invalid input
-        '500':
-          description: Internal server error
     put:
       tags:
         - Transaction Module

@@ -21,7 +21,6 @@ const useFetchUserProfile = () => {
         .then((response) => response.json())
         .then((data) => {
           if (data.body) {
-            console.log('如果fetch成功，这里将显示用户信息：', data.body)
             dispatch(setFirstName(data.body.firstName))
             dispatch(setLastName(data.body.lastName))
             dispatch(setUserName(data.body.userName))

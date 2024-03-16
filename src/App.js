@@ -1,4 +1,3 @@
-// App.js
 import React from 'react'
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 import { Provider } from 'react-redux'
@@ -6,6 +5,7 @@ import store from './redux/store'
 import HomePage from './pages/HomePage'
 import SignInPage from './pages/SignInPage'
 import User from './pages/User'
+import RequireAuth from './pages/RequireAuth'
 
 function App() {
   return (
@@ -14,7 +14,14 @@ function App() {
         <Routes>
           <Route path='/' element={<HomePage />} />
           <Route path='/sign-in' element={<SignInPage />} />
-          <Route path='/user' element={<User />} />
+          <Route
+            path='/user'
+            element={
+              <RequireAuth>
+                <User />
+              </RequireAuth>
+            }
+          />
         </Routes>
       </Router>
     </Provider>
