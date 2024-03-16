@@ -11,12 +11,17 @@ function FormEditName() {
   const [newUserName, setNewUserName] = useState(userName) // initialize newUserName with current userName
   const [isEmpty, setIsEmpty] = useState(false) // initialize isEmpty with false
   const [isSuccess, setIsSuccess] = useState(false) // initialize isSuccess with false
+  const [isInvalid, setIsInvalid] = useState(false) // initialize isInvalid with false
   const isLoggedIn = !!token // initialize isLoggedIn based on whether token exists
 
   const handleSubmit = async (e) => {
     e.preventDefault()
+    const regex = /^[a-zA-Z0-9_]{3,30}$/ // regex to validate user name
     if (newUserName === '') {
       setIsEmpty(true) // set isEmpty to true if newUserName is empty
+      return
+    } else if (!regex.test(newUserName)) {
+      setIsInvalid(true) // set isInvalid to true if newUserName does not match the regex
       return
     }
     try {
@@ -51,10 +56,12 @@ function FormEditName() {
               setNewUserName(e.target.value)
               setIsEmpty(false) // reset isEmpty when input changes
               setIsSuccess(false) // reset isSuccess when input changes
+              setIsInvalid(false) // reset isInvalid when input changes
             }} // update local state when input changes
             className='input-wrapper input'
           />
           {isEmpty && <p style={{ color: 'red' }}>Input cannot be empty.</p>}
+          {isInvalid && <p style={{ color: 'red' }}>Username is invalid.</p>}
           {isSuccess && (
             <p style={{ color: 'green' }}>Username updated successfully.</p>
           )}
