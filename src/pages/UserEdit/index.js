@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import getToken from '../../hooks/getToken'
 import Navbar from '../../components/Navbar'
 import Footer from '../../components/Footer'
 import { setFirstName, logOut } from '../../redux/userActions'
