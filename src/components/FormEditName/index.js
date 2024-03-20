@@ -26,7 +26,7 @@ function FormEditName() {
     }
     try {
       const response = await axios.put(
-        'http://localhost:3001/api/v1/user/profile',
+        'https://api.banque.xiaosong.fr/api/v1/user/profile',
         { userName: newUserName },
         { headers: { Authorization: `Bearer ${token}` } }
       ) // send PUT request to API

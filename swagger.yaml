@@ -140,7 +140,8 @@ paths:
     put:
       tags:
         - Transaction Module
-      summary: Update a transaction
+      summary: Update a transaction's reference information
+      description: Allows users to update the reference information for a specific transaction. This operation does not allow changes to the transaction's date, amount, or any other financial details.
       parameters:
         - name: transactionId
           in: path
@@ -149,17 +150,23 @@ paths:
           type: string
         - in: body
           name: body
-          description: Update transaction attributes
+          description: Object containing the new reference information
           required: true
           schema:
-            $ref: '#/definitions/Transaction'
+            type: object
+            properties:
+              reference:
+                type: string
+                description: The new reference information for the transaction
       responses:
         '200':
-          description: Transaction updated successfully
+          description: Transaction reference updated successfully
           schema:
-            $ref: '#/definitions/ApiResponse'
+            $ref: '#/definitions/TransactionReferenceUpdateResponse'
         '400':
-          description: Invalid Fields
+          description: Invalid request or reference information
+        '404':
+          description: Transaction not found
         '500':
           description: Internal Server Error
 definitions:
@@ -224,6 +231,12 @@ definitions:
     properties:
       userName:
         type: string
+  TransactionReferenceUpdateResponse:
+    type: object
+    properties:
+      message:
+        type: string
+        example: 'Transaction reference updated successfully'
 securityDefinitions:
   Bearer:
     type: apiKey

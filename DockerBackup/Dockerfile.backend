@@ -1,0 +1,23 @@
+# 基于Node的官方镜像
+FROM node:latest
+
+# 设置工作目录
+WORKDIR /app
+
+# 复制项目文件
+COPY . .
+
+# 为entrypoint.sh设置执行权限
+RUN chmod +x /app/entrypoint.sh
+
+# 安装项目依赖
+RUN npm install
+
+# 进入server目录并安装依赖
+RUN cd server && npm install --legacy-peer-deps
+
+# 启动后端服务
+CMD ["node", "server/server.js"]
+
+# 暴露后端服务端口，假设后端监听在8086端口
+EXPOSE 8086

@@ -11,7 +11,7 @@ const useFetchUserProfile = () => {
 
   useEffect(() => {
     if (isLoggedIn) {
-      fetch('http://localhost:3001/api/v1/user/profile', {
+      fetch('https://api.banque.xiaosong.fr', {
         method: 'GET',
         headers: {
           Authorization: `Bearer ${token}`,
