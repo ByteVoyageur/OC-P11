@@ -13,6 +13,13 @@ router.post(
   userController.getUserProfile
 )
 
+// add a new route to handle PUT requests to /profile
+router.get(
+  '/profile',
+  tokenValidation.validateToken, // ensure the token is valid
+  userController.getUserProfile // use the getUserProfile controller
+)
+
 router.put(
   '/profile',
   tokenValidation.validateToken,

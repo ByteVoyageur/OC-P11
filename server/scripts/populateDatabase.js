@@ -1,5 +1,5 @@
 const axios = require('axios')
-const signupApi = 'http://localhost:3001/api/v1/user/signup'
+const signupApi = 'https://api.banque.xiaosong.fr/api/v1/user/signup'
 
 const users = [
   {
