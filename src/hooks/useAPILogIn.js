@@ -6,7 +6,8 @@ export default function useAPILogIn() {
 
   const logIn = async (email, password) => {
     try {
-      const apiUrl = 'https://api.banque.xiaosong.fr'
+      // 直接使用硬编码的 URL
+      const apiUrl = 'https://api.banque.xiaosong.fr';
 
       const response = await fetch(`${apiUrl}/api/v1/user/login`, {
         method: 'POST',

@@ -1,17 +1,20 @@
 // useFetchUserProfile.js
-import { useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { setFirstName, setUserName, setLastName } from '../redux/userActions'
-import getToken from './getToken'
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { setFirstName, setUserName, setLastName } from '../redux/userActions';
+import getToken from './getToken';
 
 const useFetchUserProfile = () => {
-  const { isLoggedIn } = useSelector((state) => state.user)
-  const dispatch = useDispatch()
-  const token = getToken()
+  const { isLoggedIn } = useSelector((state) => state.user);
+  const dispatch = useDispatch();
+  const token = getToken();
 
   useEffect(() => {
     if (isLoggedIn) {
-      fetch('https://api.banque.xiaosong.fr', {
+
+      const apiUrl = 'https://api.banque.xiaosong.fr';
+
+      fetch(`${apiUrl}/api/v1/user/profile`, {
         method: 'GET',
         headers: {
           Authorization: `Bearer ${token}`,
@@ -21,19 +24,16 @@ const useFetchUserProfile = () => {
         .then((response) => response.json())
         .then((data) => {
           if (data.body) {
-            dispatch(setFirstName(data.body.firstName))
-            dispatch(setLastName(data.body.lastName))
-            dispatch(setUserName(data.body.userName))
+            dispatch(setFirstName(data.body.firstName));
+            dispatch(setLastName(data.body.lastName));
+            dispatch(setUserName(data.body.userName));
           }
         })
         .catch((error) => {
-          console.error(
-            'There has been a problem with your fetch operation:',
-            error
-          )
-        })
+          console.error('There has been a problem with your fetch operation:', error);
+        });
     }
-  }, [isLoggedIn, token, dispatch])
-}
+  }, [isLoggedIn, token, dispatch]);
+};
 
-export default useFetchUserProfile
+export default useFetchUserProfile;
