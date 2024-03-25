@@ -103,6 +103,31 @@ body {
   gap: 10px;
 }
 
+.main-nav-item,
+.nav-user-link,
+.button-no-style {
+  color: #2c3e50;
+  text-decoration: none;
+}
+
+.main-nav-item:active,
+.main-nav-item:focus,
+.main-nav-item:visited,
+.nav-user-link:active,
+.nav-user-link:focus,
+.nav-user-link:visited,
+.button-no-style:active,
+.button-no-style:focus,
+.button-no-style:visited {
+  color: #2c3e50;
+  text-decoration: none;
+}
+
+.button-no-style:focus {
+  outline: none;
+}
+
+
 .hero {
   background-image: url('../../../public/bank-tree.jpeg');
   background-position: 0 -50px;

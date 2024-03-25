@@ -7,8 +7,6 @@ import { faSignOutAlt } from '@fortawesome/free-solid-svg-icons'
 function Navbar({ isLoggedIn, onSignOut, firstName }) {
   const name = typeof firstName === 'string' ? firstName : ''
 
-  console.log('onSignOut function:', onSignOut)
-
   return (
     <nav className='main-nav'>
       <Link className='main-nav-logo' to='/'>
